@@ -47,6 +47,6 @@ if __name__ == '__main__':
         readStdinAndPrint(statusCodes, totalSize)
 
     except KeyboardInterrupt:
-        # on ctrl + C, print statistics at that point
+        # on ctrl + C (raises this exception by default), print statistics
         readStdinAndPrint(statusCodes, totalSize)
         raise
