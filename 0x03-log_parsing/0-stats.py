@@ -27,17 +27,20 @@ if __name__ == '__main__':
 
             # get the line's file size and status code
             lineList = line.split()
+            # check that line is as long as expected (confirm-ish format)
+            if len(lineList) != 9:
+                continue
             count += 1
 
             try:
                 totalSize += int(lineList[-1])
-            except exception as e:
+            except ValueError as e:
                 pass
-
+                # print('exception: ', e)
             try:
                 if lineList[-2] in statusCodes:
                     statusCodes[lineList[-2]] += 1
-            except exception as e:
+            except Exception as e:
                 pass
         # lines exhausted, print last batch's statistics...
         readStdinAndPrint(statusCodes, totalSize)
