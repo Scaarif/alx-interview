@@ -4,7 +4,7 @@ import sys
 
 
 def readStdinAndPrint(status_dict, f_size):
-    """ WWPrints information """
+    """ print lines information """
     print("File size: {:d}".format(f_size))
     for i in sorted(status_dict.keys()):
         if status_dict[i] != 0:
