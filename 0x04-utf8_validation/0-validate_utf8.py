@@ -30,6 +30,9 @@ def validUTF8(data):
     while i < len(data):
         # get number of bytes and if 1 and starts with 1 return false
         bits = bin(data[i])
+        # if a character is all `1`s
+        if bits[2:].find('0') == -1 and len(bits) - 2 == 8:
+            return False
         bNum = bits[2:].find('0') + 2 - \
             bits.find('1') if len(bits) - 2 > 7 else 1
         if bNum > 4 or (bNum == 1 and len(bits) - 2 == 8):
