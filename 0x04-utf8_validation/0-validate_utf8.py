@@ -26,18 +26,23 @@ def validUTF8(data):
     if len(data) < 2:
         return True if len(data) == 0 or data[0] <= 128 else False
     # otherwise, check that the bytes most significant bits rules hold
-    for idx, i in enumerate(data):
+    i = 0
+    while i < len(data):
         # get number of bytes and if 1 and starts with 1 return false
-        bts = bin(i)  # bits
-        bNum = bts[2:].find('0') + 2 - bts.find('1') if len(bts) - 2 > 7 else 1
-        if bNum > 4:
+        bits = bin(data[i])
+        bNum = bits[2:].find('0') + 2 - \
+            bits.find('1') if len(bits) - 2 > 7 else 1
+        if bNum > 4 or (bNum == 1 and len(bits) - 2 == 8):
             return False
         # depending on number of bytes, check rules hold
         # check that each following byte starts with `10`
         x = 1
         while x < bNum:
-            if not (len(bin(data[idx + x])) - 2 == 8 and
-                    (bin(data[idx + x])[2:4] == '10')):
+            if not (len(bin(data[i + x])) - 2 == 8 and
+                    (bin(data[i + x])[2:4] == '10')):
                 return False
             x += 1
+        # skip to next character (how?)
+        i += bNum
+
     return True
