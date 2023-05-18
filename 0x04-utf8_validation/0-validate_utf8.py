@@ -21,8 +21,10 @@ def validUTF8(data):
     """
     # if len(data) < 2 and binary starts with anything other than 0,
     # return false
+    if data is None:
+        return True
     if len(data) < 2:
-        return True if data[0] <= 128 else False
+        return True if len(data) == 0 or data[0] <= 128 else False
     # otherwise, check that the bytes most significant bits rules hold
     for idx, i in enumerate(data):
         # get number of bytes and if 1 and starts with 1 return false
