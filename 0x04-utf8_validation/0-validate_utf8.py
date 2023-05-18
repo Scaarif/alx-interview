@@ -24,7 +24,7 @@ def validUTF8(data):
     if data is None:
         return True
     if len(data) < 2:
-        return True if len(data) == 0 or data[0] < 128 else False
+        return True if len(data) == 0 or data[0] <= 128 else False
     # otherwise, check that the bytes most significant bits rules hold
     i = 0
     while i < len(data):
