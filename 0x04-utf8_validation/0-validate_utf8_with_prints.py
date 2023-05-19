@@ -19,33 +19,38 @@ def validUTF8(data):
             - 1 <= data.length <= 2 * 10**4
             - 0 <= data[i] <= 255
     """
+    print(f'data: {data}')
     # if len(data) < 2 and binary starts with anything other than 0,
     # return false
-    if data is None:
-        return True
     if len(data) < 2:
-        return True if len(data) == 0 or data[0] <= 128 else False
+        print('single integer in data')
+        return True if data[0] <= 128 else False
     # otherwise, check that the bytes most significant bits rules hold
     i = 0
     while i < len(data):
         # get number of bytes and if 1 and starts with 1 return false
         bits = bin(data[i])
-        # if a character is all `1`s
         if bits[2:].find('0') == -1 and len(bits) - 2 == 8:
+            print('No zeros in str: ', bits)
             return False
-        bNum = bits[2:].find('0') + 2 - \
-            bits.find('1') if len(bits) - 2 > 7 else 1
+        bNum = bits[2:].find('0') + 2 - bits.find('1') if len(bits) - 2 > 7 else 1
+        print(f'{bits}: {bNum}')
         if bNum > 4 or (bNum == 1 and len(bits) - 2 == 8):
+            print('more than 4bytes or invalid 1 byte character')
             return False
         # depending on number of bytes, check rules hold
         # check that each following byte starts with `10`
         x = 1
         while x < bNum:
-            if i + x >= len(data) or not (len(bin(data[i + x])) - 2 == 8 and
-                                          (bin(data[i + x])[2:4] == '10')):
+            if x + i >= len(data) or not (len(bin(data[i + x])) - 2 == 8 and
+                    (bin(data[i + x])[2:4] == '10')):
+                # print(f'next byte check failed - {data[i + x]} -> {bin(data[i + x])}')
+                print(f'next byte check failed')
                 return False
+            print(f'x is {x}')
             x += 1
         # skip to next character (how?)
+        # print(f'dealt with {data[i]} at idx {i} and {bNum} bytes. We move on to {data[i + bNum]} at idx {i + bNum - 1}')
         i += bNum
 
     return True
