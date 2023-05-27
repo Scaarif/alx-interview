@@ -7,7 +7,7 @@ import sys
 
 def isValid(cBoard, row, col):
     """ checks if a possible solution is valid, returning
-        true or false 
+        true or false
     """
     for i in range(row):
         if cBoard[i] == col or \
@@ -16,13 +16,14 @@ def isValid(cBoard, row, col):
             return False
     return True
 
+
 def backTrack(cBoard, row):
     """ backtrack to find valid solutions from the board set """
     # set base case
     if row == len(cBoard):
         print('[', end='')
         for i in range(len(cBoard)):
-             print([i, cBoard[i]], end='')
+            print([i, cBoard[i]], end=', ')
         print(']')
         return
     for col in range(len(cBoard)):
