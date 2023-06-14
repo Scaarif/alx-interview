@@ -14,10 +14,12 @@ def makeChange(coins, total):
     count = 0
     c_coin = max(coins) if len(coins) else total
     new = coins[:]
-    while c_coin < total > 0:
+    #print('coin: ', c_coin, ' -> ', coins)
+    while len(new) or c_coin <= total > 0:
         count += total // c_coin
         total = total % c_coin
         idx = new.index(c_coin)
         new = new[:idx] + new[idx + 1:]
-        c_coin = max(new)
+        c_coin = max(new) if len(new) else total
+        #print('new: ', new, ' and max: ', c_coin, ' total left ', total)
     return count if total == 0 else -1
