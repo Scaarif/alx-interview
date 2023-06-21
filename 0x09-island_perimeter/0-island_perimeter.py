@@ -15,7 +15,7 @@ def island_perimeter(grid):
                 if col:
                     # left and right respectively (same row)
                     perimeter += 1 if idx == 0 or not row[idx - 1] else 0
-                    perimeter += 1 if (idx == len(grid) - 1
+                    perimeter += 1 if (idx == len(row) - 1
                                        or not row[idx + 1]) else 0
                     # top and bottom respectively (same col)
                     perimeter += 1 if (index == 0 or
