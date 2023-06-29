@@ -7,7 +7,7 @@ def island_perimeter(grid):
     perimeter = 0
     # grid can't have a length larger than 100
     if len(grid) <= 100 and len(grid[0]) <= 100:
-        # loop through each row and column except first and last
+        # loop through each row and column
         for index, row in enumerate(grid):
             # for each col, check adjacent cols (top, bottom, left and right)
             for idx, col in enumerate(row):
