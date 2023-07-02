@@ -25,7 +25,7 @@ def isWinner(x, nums):
     """
     if x == 0 or not len(nums) or len(nums) != x:
         return None
-    print(f'start at x: {x} and {nums}')
+    # print(f'start at x: {x} and {nums}')
     # for each round (in x rounds), determine winner
     winners = []
     for n in nums:
@@ -34,18 +34,18 @@ def isWinner(x, nums):
         # play (selecting and removing a prime number and its multiples)
         # take turns playing...
         turns = 0
-        primes = []
-        nonPs = []
+        # primes = []
+        # nonPs = []
         for i in set_:
             if isPrime(i):
                 turns += 1
-                primes.append(i)
-            else:
-                nonPs.append(i)
-        print(f'set: {set_} -> ps: {primes} & nonPs: {nonPs}')
+                # primes.append(i)
+            # else:
+                # nonPs.append(i)
+        # print(f'set: {set_} -> ps: {primes} & nonPs: {nonPs}')
         winners.append('M' if turns % 2 else 'B')
-        print(f'turns: {turns} -> {winners[-1]}')
-    print('winners: ', winners)
+        # print(f'turns: {turns} -> {winners[-1]}')
+    # print('winners: ', winners)
     if winners.count('M') > winners.count('B'):
         winner = 'Maria'
     elif winners.count('M') == winners.count('B'):

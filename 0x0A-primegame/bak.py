@@ -39,10 +39,10 @@ def isWinner(x, nums):
         # play (selecting and removing a prime number and its multiples)
         # take turns playing...
         turns = 0
+        primes = []
         for idx, i in enumerate(set_):
-            if len(set_) == 1 and set_[0] == 1:
-                break
             if isPrime(i):
+                primes.append(i)
                 new = set_[:idx] + set_[idx + 1:]
                 # remove multiples of i from new
                 looper = []
@@ -54,7 +54,7 @@ def isWinner(x, nums):
                 set_ = looper
                 print(f'new set_: {set_}')
         winners.append('M' if turns % 2 else 'B')
-        print(f'turns: {turns} -> {winners[-1]}')
+        print(f'turns: {turns} -> {winners[-1]} and primes: {primes}')
     print('winners: ', winners)
     if winners.count('M') > winners.count('B'):
         winner = 'Maria'
